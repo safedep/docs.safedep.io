@@ -44,7 +44,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/safedep/vet/tree/main/docs',
+            'https://github.com/safedep/docs.safedep.io/tree/main/docs',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -80,7 +80,7 @@ const config = {
             position: 'right',
           },
           {
-            href: 'https://discord.gg/4nxy9SCr',
+            href: 'https://discord.gg/kAGEj25dCn',
             label: 'Discord',
             position: 'right',
           },
@@ -102,7 +102,7 @@ const config = {
             items: [
               {
                 label: 'Discord',
-                href: 'https://discord.gg/4nxy9SCr',
+                href: 'https://discord.gg/kAGEj25dCn',
               },
             ],
           },
@@ -115,7 +115,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/safedep',
+                href: 'https://github.com/safedep/vet',
               },
             ],
           },
