@@ -5,7 +5,7 @@ title: 🔎 Filtering
 
 # 🔎 Filtering
 
-Filter command helps solve the problem of visibility for OSS dependencies in an application. To support various requirements, we adopt a generic [expressions language](https://github.com/google/cel-spec) for flexible filtering.
+Filter command helps solve the problem of visibility for OSS dependencies in an application. To support various requirements, we adopt a generic [expressions language](https://cel.dev/) for flexible filtering.
 
 ## Example
 
@@ -40,10 +40,10 @@ Filter expressions work on packages (aka. dependencies) and evaluates to a boole
 | Variable    | Content                                                     |
 |-------------|-------------------------------------------------------------|
 | `_`         | The root variable, holding other variables                  |
-| `vulns`     | Holds a map of vulnerabiliteis by severity                  |
+| `vulns`     | Holds a map of vulnerabilities by severity                  |
 | `scorecard` | Holds OpenSSF scorecard                                     |
 | `projects`  | Holds a list of source projects associated with the package |
-| `licenses`  | Holds a list of liceses in SPDX license code format         |
+| `licenses`  | Holds a list of licenses in SPDX license code format         |
 
 :::tip
 

@@ -16,7 +16,7 @@ of this framework is to support multiple languages, source repositories (local a
 and create a representation of code that can be analysed for common software
 supply chain security related use-cases such as
 
-- Identify shadowed imports
+- Identify shadow imports
 - Identify evidence of a dependency actually being used
 - Import reachability analysis
 - Function reachability analysis
