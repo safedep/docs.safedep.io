@@ -5,7 +5,9 @@ title: 🚀 Quick Start
 
 # Quick Start
 
-> SafeDep Cloud provides a control and data aggregation service on top of security tools like [vet](https://github.com/safedep/vet). Learn more about the [concepts](concepts)
+:::info
+SafeDep Cloud provides a control and data aggregation service on top of security tools like [vet](https://github.com/safedep/vet).
+:::info
 
 SafeDep cloud allows `vet` users to connect and report its findings to a central location (SafeDep Cloud). Subsequently, users of the service can perform various tasks such as
 
@@ -18,14 +20,19 @@ The process involves following steps
 1. Onboard to SafeDep Cloud
 2. Generate an API key for use with `vet`
 3. Configure `vet` to sync its finding to SafeDep Cloud
+4. Query consolidate data from all `vet` deployments
 
-**Note:** The `vet` tool is extended with cloud management functionality. All cloud management related commands are available within `vet cloud` sub-command. However, not all users of `vet` need to use the cloud functionality. It is meant only for administrative and management operations. 
+:::tip
+The `vet` tool is extended with cloud management functionality. All cloud management related commands are available within `vet cloud` sub-command. However, not all users of `vet` need to use the cloud functionality. It is meant only for administrative and management operations. 
+:::
 
-## Onboarding to SafeDep Cloud
+## Onboard to SafeDep Cloud
+
+Follow the steps below to onboard into SafeDep Cloud. This is required only for administrators who want to configure `vet` to synchronize data and policies with SafeDep Cloud. This is not required for independent use of `vet`.
 
 ### 1. Install `vet`
 
-Start by [installing vet](/quickstart) if you don't already have it installed.
+Start by [installing vet](/quickstart) if you don't already have it installed. Ensure you are using a version that supports the `cloud` subcommand.
 
 ### 2. Login to SafeDep Cloud
 
@@ -37,13 +44,15 @@ Verify that you are authenticated to SafeDep cloud.
 
 ### 3. Onboard your Organization
 
+Create an organization that will group (isolate) all your projects, policies and data
+
 ```shell
 vet cloud register --name "John Doe" \
   --org-name "Organization Name" \
   --org-domain example.com
 ```
 
-On successful on-boarding, you will receive the SafeDep cloud tenant domain. It will be like `default-team.example-com.safedep.io`. `vet` will automatically configure this domain on your local system. You need to note this domain for usage in CI/CD.
+On successful on-boarding, you will receive the SafeDep cloud `tenant domain`. It will be like `default-team.example-com.safedep.io`. `vet` will automatically configure this domain on your local system. You need to note this domain for usage in CI/CD. You will also receive an email with the required details.
 
 ### 4. Verify Onboarding
 
@@ -53,7 +62,7 @@ vet cloud whoami
 
 This should list your registered user and your organization on SafeDep cloud.
 
-### 5. Create API Key for `vet` Scanner Integration
+### 5. Create API Key for `vet` Integration
 
 Generate an API key for use with `vet` for syncing report data to SafeDep cloud.
 
@@ -61,7 +70,7 @@ Generate an API key for use with `vet` for syncing report data to SafeDep cloud.
 vet cloud key create --name "Key Name" --description "Key description"
 ```
 
-## Configure `vet`
+## Configure `vet` with SafeDep Cloud
 
 Once the API key is generated
 
@@ -69,7 +78,7 @@ Once the API key is generated
 vet auth configure --tenant <tenant-domain>
 ```
 
-## Send Data to SafeDep Cloud
+### Send Data to SafeDep Cloud
 
 ```shell
 vet scan -M /path/to/package-lock.json --report-sync \
@@ -78,3 +87,76 @@ vet scan -M /path/to/package-lock.json --report-sync \
 ```
 
 > `package-lock.json` is used as an example manifest. `vet` supports a wide variety of package manifest and code analysis.
+
+### Configure GitHub Action
+
+If you are using [vet-action](https://github.com/safedep/vet-action) with GitHub, you can configure it to send issues and policy violations to SafeDep Cloud.
+
+1. Create a [GitHub Action Secret](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions) to store the API key generated earlier and your tenant domain
+2. Update your `vet-action` workflow to enable cloud mode
+
+```yaml
+[...]
+  cloud: true
+  cloud-key: ${{ secrets.SAFEDEP_CLOUD_API_KEY }}
+  cloud-tenant: ${{ secrets.SAFEDEP_CLOUD_TENANT_DOMAIN }}
+[...]
+```
+
+## Query Aggregated Data
+
+SafeDep cloud maintains a component oriented data model for all your projects, OSS components, vulnerabilities, security insights and policy violations. You can query this data to find exactly what you need.
+
+### SQL Query Interface
+
+The `vet cloud` subcommand provides a generic SQL-like query interface that can be used to find what you need.
+
+:::tip
+You need to be authenticated with SafeDep cloud to execute queries.
+
+`vet cloud login --tenant <your-tenant-domain>`
+:::
+
+#### List projects synchronized with SafeDep Cloud
+
+```shell
+vet cloud query execute --sql "select projects.name, projects.version from projects"
+```
+
+#### Find critical vulnerabilities affecting a component in `main` branch
+
+```shell
+vet cloud query execute --sql \
+  "
+    select projects.name, packages.name, packages.version, vulnerabilities.cve_id from projects 
+      where projects.version = 'main' and vulnerabilities.risk = 'CRITICAL'
+  "
+```
+
+#### Find components with policy violations in `main` branch
+
+> To learn more about policies, refer to [policy as code](../advanced/policy-as-code.md)
+
+```shell
+vet cloud query execute --sql \
+  "
+    select projects.name, packages.name, packages.version, policy_violations.rule_name from projects
+      where projects.version = 'main'
+  "
+```
+
+#### View schema to build your own queries
+
+```shell
+vet cloud query schema
+```
+
+### Export Data
+
+All `vet cloud query` commands support CSV export by default. To export results as CSV
+
+```shell
+vet cloud query execute \
+  --csv results.csv \
+  --sql "select projects.name, projects.version from projects"
+```

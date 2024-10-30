@@ -5,9 +5,11 @@ title: 🚀 Quick Start
 
 # 🚀 Quick Start
 
-> For `SafeDep Cloud Quickstart`, refer to [Cloud Quickstart](cloud/quickstart.md)
+:::info
+For SafeDep Cloud, refer to [Cloud Quickstart](cloud/quickstart.md)
+:::
 
-> For latest guidance on getting started with `vet`, refer to [official README in GitHub Repository](https://github.com/safedep/vet)
+Get started with `vet` for identifying risky open source components used in your application. Establish policy driven guardrails to prevent introducing risky open source components in your application.
 
 ## Installation
 
@@ -39,6 +41,30 @@ Scan a directory, auto-discovering well known manifest files
 ```shell
 vet scan -D /path/to/dir
 ```
+
+## Policy as Code
+
+`vet` supports [CEL](https://cel.dev/) based policy language for identifying risks. Scan and fail on critical or high risk vulnerabilities
+
+```shell
+vet scan -D /path/to/dir \
+  --filter '(vulns.critical.size() > 0) || (vulns.high.size() > 0)' \
+  --filter-fail
+```
+
+Multiple CEL queries can be combined to create a policy. [See example](https://github.com/safedep/vet/blob/main/samples/filter-suites/fs-generic.yml). Audit your application using your opinionated policy as code
+
+```shell
+vet scan -D /path/to/dir \
+  --filter-suite /path/to/policy.yml \
+  --filter-fail
+```
+
+## Setup Guardrails in CI/CD
+
+`vet` supports a native [GitHub Action](https://github.com/safedep/vet-action) that can be used to easily setup a policy driven guardrail against risky OSS components. Refer to [vet-action](https://github.com/safedep/vet-action) on setting up pull request integration for GitHub.
+
+![](/img/vet-guardrails.png)
 
 ## Whats Next?
 

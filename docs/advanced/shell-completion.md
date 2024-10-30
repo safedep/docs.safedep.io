@@ -3,13 +3,13 @@ sidebar_position: 9
 title: ⏩ Shell Completion
 ---
 
-# ⏩ Shell completion for vet
+# ⏩ Shell Completion
 
 Command-line completion or Shell completion is a feature provided by shells like `bash` or `zsh` that lets you type commands in a fast and easy way. This functionality automatically fills in partially typed commands when the user press the `tab` key.
 
 - To enable shell completion for `vet` for various shells follow the below steps
 
-## 1. Identify your current environment shell
+> Identify your current environment shell
 
 ```bash
 ❯ echo $SHELL
@@ -17,7 +17,7 @@ Command-line completion or Shell completion is a feature provided by shells like
 /bin/zsh
 ```
 
-## 2. Generate the completion command for your shell
+> Generate the completion command for your shell
 
 ```zsh
 ❯ vet completion zsh -h
@@ -46,9 +46,7 @@ To load completions for every new session, execute once:
 You will need to start a new shell for this setup to take effect.
 ```
 
-
-
-## 3. Run the commands to setup completion
+> Run the commands to setup completion
 
 ```zsh
 echo "autoload -U compinit; compinit" >> ~/.zshrc
@@ -56,7 +54,7 @@ source <(vet completion zsh); compdef _vet vet
 vet completion zsh > $(brew --prefix)/share/zsh/site-functions/_vet
 ```
 
-## 4. Open new shell and you can see the completion activated
+> Open new shell and you can see the completion activated
 
 ```zsh
 ❯ vet [tab]
