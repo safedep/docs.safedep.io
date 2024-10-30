@@ -20,8 +20,8 @@ vet scan -D /path/to/project --report-sarif /path/to/report.sarif
 
 ## GitHub Action
 
-`vet` has a GitHub Action to easy integration. Refer to [vet GitHub
-Action](../integrations/github-actions.md) for more details. The action
+`vet` has a GitHub Action for easy integration. Refer to [vet GitHub
+Action](https://github.com/safedep/vet-action) for more details. The action
 produces a SARIF report which can be uploaded to GitHub.
 
 Invoke `vet-action` to run `vet` in GitHub
