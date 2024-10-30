@@ -5,18 +5,11 @@ title: 📦 Dependency Inventory
 
 # Dependency Inventory
 
-In this guide, we will use CycloneDX `gradle` plugin to generate a software
-bill of material (SBOM) and scan it using `vet`.
+Package managers such as Maven, Gradle etc. has the most accurate view of library dependencies. They can be used to resolve the dependencies, generate an SBOM and scan using `vet` for better accuracy. In this guide, we will use [CycloneDX gradle plugin](https://github.com/CycloneDX/cyclonedx-gradle-plugin) to generate a software bill of material (SBOM) and scan it using `vet`.
 
-## CycloneDX Plugin Integration
+## Gradle Plugin Integration
 
-An official [plugin](https://github.com/CycloneDX/cyclonedx-gradle-plugin) can
-be used with build automation tools such as Gradle, Maven, etc. to generate
-Software Bill of Materials(SBOM) for a Java/Android/Kotlin projects.
-
-### Gradle Plugin Integration
-
-The gradle plugin for generating cyclonedx sbom file has to be integrated into
+The gradle plugin for generating CycloneDX SBOM file has to be integrated into
 the build script i.e. `build.gradle` file.
 
 ```groovy
