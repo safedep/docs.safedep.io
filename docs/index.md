@@ -9,10 +9,11 @@ title: 👋 Welcome
 This is the official documentation for [safedep.io](https://safedep.io). Here you will find everything you need to know on using [SafeDep Cloud](./cloud/index.md) and [vet](./what-is-vet.md) to safeguard your application against risky open source components.
 
 ## Whats next?
-- Start with [quickstart on OSS risk identification](./quickstart.md)
+
+- Start with [quickstart on OSS risk identification using vet](./quickstart.md)
 - Continue with [quickstart with risk governance with SafeDep Cloud](./cloud/quickstart.md)
 - Head over to the guides section for using our tools for various use-cases
-- Look into API docs if you want to integrate detoxio.ai with your own ecosystem
+- Look into API docs if you want to integrate `safedep.io` with your own ecosystem
 
 ## Community
 

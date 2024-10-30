@@ -1,6 +1,6 @@
 {
-  "label": "👀 Advanced Usage",
-  "position": 6,
+  "label": "🔧 vet Usage",
+  "position": 4,
   "link": {
     "type": "generated-index",
     "description": "Advanced usage of vet for various workflows"

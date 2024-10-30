@@ -40,3 +40,6 @@ Scan a directory, auto-discovering well known manifest files
 vet scan -D /path/to/dir
 ```
 
+## Whats Next?
+
+Refer to [vet GitHub Repository](https://github.com/safedep/vet) for latest documentation on usage.
