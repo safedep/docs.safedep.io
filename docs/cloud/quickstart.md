@@ -7,6 +7,7 @@ title: 🚀 Quick Start
 
 :::info
 SafeDep Cloud provides a control and data aggregation service on top of security tools like [vet](https://github.com/safedep/vet).
+Refer to [SafeDep Cloud](./index.md) for more information.
 :::info
 
 SafeDep cloud allows `vet` users to connect and report its findings to a central location (SafeDep Cloud). Subsequently, users of the service can perform various tasks such as
@@ -23,7 +24,7 @@ The process involves following steps
 4. Query consolidate data from all `vet` deployments
 
 :::tip
-The `vet` tool is extended with cloud management functionality. All cloud management related commands are available within `vet cloud` sub-command. However, not all users of `vet` need to use the cloud functionality. It is meant only for administrative and management operations. 
+The `vet` tool is extended with cloud management functionality. All cloud management related commands are available within `vet cloud` sub-command. However, not all users of `vet` need to use the cloud functionality. It is meant only for administrative and management operations.
 :::
 
 ## Onboard to SafeDep Cloud
@@ -40,7 +41,12 @@ Start by [installing vet](/quickstart) if you don't already have it installed. E
 vet cloud login
 ```
 
-Verify that you are authenticated to SafeDep cloud.
+:::info
+If you sign-up using email and password, you will be required to verify
+your email address before you can authenticate.
+:::
+
+Once you have registered, verify that you are authenticated to SafeDep cloud.
 
 ### 3. Onboard your Organization
 
@@ -128,7 +134,7 @@ vet cloud query execute --sql "select projects.name, projects.version from proje
 ```shell
 vet cloud query execute --sql \
   "
-    select projects.name, packages.name, packages.version, vulnerabilities.cve_id from projects 
+    select projects.name, packages.name, packages.version, vulnerabilities.cve_id from projects
       where projects.version = 'main' and vulnerabilities.risk = 'CRITICAL'
   "
 ```
