@@ -1,6 +1,7 @@
 ---
 draft: false
 title: 📦 Dependency Inventory
+sidebar_position: 3
 ---
 
 # Dependency Inventory
