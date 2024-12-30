@@ -9,7 +9,7 @@ title: 🚀 Quick Start
 For SafeDep Cloud, refer to [Cloud Quickstart](cloud/quickstart.md)
 :::
 
-Get started with `vet` for identifying risky open source components used in your application. Establish policy driven guardrails to prevent introducing risky open source components in your application.
+Get started with [vet](https://github.com/safedep/vet) for identifying risky open source components used in your application. Establish policy driven guardrails to prevent introducing risky open source components in your application.
 
 ## Installation
 

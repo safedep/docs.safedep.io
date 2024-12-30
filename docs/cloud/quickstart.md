@@ -6,8 +6,7 @@ title: 🚀 Quick Start
 # Quick Start
 
 :::info
-SafeDep Cloud provides a control and data aggregation service on top of security tools like [vet](https://github.com/safedep/vet).
-Refer to [SafeDep Cloud](./index.md) for more information.
+SafeDep Cloud provides a control and data aggregation service on top of security tools like [vet](https://github.com/safedep/vet). Refer to [SafeDep Cloud](./index.md) for more information.
 :::info
 
 SafeDep cloud allows `vet` users to connect and report its findings to a central location (SafeDep Cloud). Subsequently, users of the service can perform various tasks such as
@@ -29,62 +28,44 @@ The `vet` tool is extended with cloud management functionality. All cloud manage
 
 ## Onboard to SafeDep Cloud
 
-Follow the steps below to onboard into SafeDep Cloud. This is required only for administrators who want to configure `vet` to synchronize data and policies with SafeDep Cloud. This is not required for independent use of `vet`.
+Navigate to https://platform.safedep.io/ to onboard to SafeDep Cloud. You must perform the following steps
 
-### 1. Install `vet`
+1. Navigate to https://platform.safedep.io/
+2. Sign-in or Sign-up
+3. Onboard and create your Tenant while noting the *Tenant Domain*
+4. Create API key for use with `vet`
 
-Start by [installing vet](/quickstart) if you don't already have it installed. Ensure you are using a version that supports the `cloud` subcommand.
+After completing onboarding, you should have the following information for use with `vet`
 
-### 2. Login to SafeDep Cloud
+1. Tenant Domain
+2. API Key
 
-```shell
-vet cloud login
-```
+## `vet` with SafeDep Cloud
 
-:::info
-If you sign-up using email and password, you will be required to verify
-your email address before you can authenticate.
-:::
+The instructions in this section assumes you have already onboarded into SafeDep Cloud and have access to:
 
-Once you have registered, verify that you are authenticated to SafeDep cloud.
+1. Tenant Domain
+2. API Key
 
-### 3. Onboard your Organization
-
-Create an organization that will group (isolate) all your projects, policies and data
-
-```shell
-vet cloud register --name "John Doe" \
-  --org-name "Organization Name" \
-  --org-domain example.com
-```
-
-On successful on-boarding, you will receive the SafeDep cloud `tenant domain`. It will be like `default-team.example-com.safedep.io`. `vet` will automatically configure this domain on your local system. You need to note this domain for usage in CI/CD. You will also receive an email with the required details.
-
-### 4. Verify Onboarding
-
-```shell
-vet cloud whoami
-```
-
-This should list your registered user and your organization on SafeDep cloud.
-
-### 5. Create API Key for `vet` Integration
-
-Generate an API key for use with `vet` for syncing report data to SafeDep cloud.
-
-```shell
-vet cloud key create --name "Key Name" --description "Key description"
-```
-
-## Configure `vet` with SafeDep Cloud
-
-Once the API key is generated
+Once these information are available, configure `vet` to use SafeDep Cloud services
 
 ```shell
 vet auth configure --tenant <tenant-domain>
 ```
 
+> **Note:** You will be prompted to enter API key
+
+### Verify Authentication
+
+Verify that your `vet` instance is configured to authenticate with SafeDep Cloud
+
+```shell
+vet auth verify
+```
+
 ### Send Data to SafeDep Cloud
+
+`vet` has first class integration with SafeDep Cloud. The `sync` reporting module can be used to synchronize its findings with SafeDep Cloud. This integrate is disabled by default and must be explicitly enabled using `--report-sync` command line option.
 
 ```shell
 vet scan -M /path/to/package-lock.json --report-sync \
