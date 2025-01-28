@@ -120,7 +120,8 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} - <a href="https://safedep.io" target = "_blank" rel = "noopener" >SafeDep</a>`,
+        copyright: `Copyright © ${new Date().getFullYear()} - <a href="https://safedep.io" target = "_blank" rel = "noopener" >SafeDep</a>` +
+          `<img referrerpolicy="no-referrer-when-downgrade" src="https://static.scarf.sh/a.png?x-pxid=b0903597-5d56-451b-9845-29f8589035d6" />`,
       },
       prism: {
         theme: lightCodeTheme,
