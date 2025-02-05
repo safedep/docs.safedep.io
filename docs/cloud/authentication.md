@@ -4,7 +4,7 @@ title: 🔒 Authentication
 draft: false
 ---
 
-SafeDep Cloud API has two API plane of operations
+SafeDep Cloud API has two plane of operations
 
 - Control Plane
 - Data Plane
@@ -12,7 +12,8 @@ SafeDep Cloud API has two API plane of operations
 APIs that expose configuration, reporting, management aka. control related operations are exposed through the Control Plane of the platform. While APIs that expose *data* operations such as fetching package insights metadata or synchronizing `vet` reports with SafeDep Cloud are part of the Data Plane of the platform.
 
 :::info
-All APIs for security tools integration are part of the Data Plane. These APIs require an API Key for authentication and rate limiting for fair usage.
+All APIs for security tools integration are part of the Data Plane. 
+These APIs require an API key for authentication and may enforce rate limits under a fair usage policy.
 :::
 
 | Plane         | API Endpoint       | Supported Authentication |
