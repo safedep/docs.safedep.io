@@ -11,77 +11,45 @@ EXPERIMENTAL: This feature is experimental and may introduce breaking changes.
 
 :::
 
-`vet` has a code analysis framework built on top of [tree-sitter](#) parsers. The goal
-of this framework is to support multiple languages, source repositories (local and remote),
-and create a representation of code that can be analysed for common software
-supply chain security related use-cases such as
+`vet` uses [code](https://github.com/safedep/code/) analysis framework built on top of [tree-sitter](#) parsers.
+The goal of this framework is to support multiple languages, source repositories (local and remote), and report the findings.
 
-- Identify shadow imports
-- Identify evidence of a dependency actually being used
-- Import reachability analysis
-- Function reachability analysis
+`vet` uses these findings and creates a Code analysis database, which can be used for enriching / analysing manifests during scanning.
 
-:::warning
-
-The code analysis framework is designed specifically to be simple, fast and
-not to be a full-fledged static analysis tool. It is currently in early stages
-of development and may not support all languages or maintain API compatibility.
-
-:::
 
 ## Build a Code Analysis Database
 
-- Analyse code and build a database for further analysis.
+Analyses code and builds a SQLite database for further analysis. This is a pre-requisite to enable code analysis features in `vet scan`
 
 ```bash
-vet code --db /tmp/code.db \
-    --src /path/to/app \
-    --imports /virtualenvs/app/lib/python3.11/site-packages \
-    --lang python \
-    create-db
+vet code scan --app /path/to/app \
+    --db /tmp/code.db \
+    --lang python
 ```
 
 The above command does the following:
 
-- Uses Python as the language for parsing source code
-- Analyses application code recursively in `/path/to/app`
-- Analyses dependencies in `/virtualenvs/app/lib/python3.11/site-packages`
-- Creates a database at `/tmp/code.db` for further analysis
+- Utilise [code](https://github.com/safedep/code/) to analyse application python code recursively in `/path/to/app`
 
-## Manual Query Execution
+    Note: `--lang` can be omitted to enable analysis of all langauages
 
-Use [cayleygraph](https://cayley.gitbook.io/cayley/) to query the database.
+- Creates a SQLite database at `/tmp/code.db` with reported findings
+
+## Scan with dependency usage analysis findings
+
+To enable code analysis features in `vet scan`, the Code analysis database path must be provided using the `--code` flag.
+
+Dependency usage analysis, being a fundamental feature is enabled by default.
 
 ```bash
-docker run -it -p 64210:64210 -v /tmp/code.db:/db cayleygraph/cayley -a /db -d bolt
+vet scan -D /path/to/code --code /tmp/code.db
 ```
 
-- Navigate to `http://127.0.0.1:64210` in your browser
+The above command does the following:
 
-### Query Examples
+- Analyses manifests in `/path/to/code`
+- Uses Code Analysis database at `/tmp/code.db` for enriching packages with the dependency usage data
+- Show summary of the scan with usage evidences & `used-in-code` tags proving actual usage of a library
 
-#### Dependency Graph
+![vet scan with code DB](/img/vet/vet-scan-codedb.png)
 
-Build dependency graph for your application
-
-```js
-g.V().Tag("source").out("imports").Tag("target").all()
-```
-
-![Dependency Graph](/img/vet-code-demo-import-graph.png)
-
-#### Import Reachability
-
-Check if a specific import is reachable in your application
-
-```js
-g.V("app").followRecursive(g.M().out("imports")).is("six").all()
-```
-
-- `app` is the application originating from `app.py`
-- `six` is a python module imported transitively
-
-### Query API
-
-Refer to [Gizmo Query Language](https://cayley.gitbook.io/cayley/query-languages/gizmoapi)
-for documentation on constructing custom queries.
