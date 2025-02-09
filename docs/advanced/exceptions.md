@@ -11,40 +11,70 @@ Any security scanning tool may produce
 2. Issues that are acceptable for a period of time
 3. Issues that are ignored permanently
 
-:::info
+`vet` supports adding one or more packages to an exceptions list. These
+packages are excluded from the scan results and will not be reported.
 
-To support exceptions, we introduce the exception model defined in [exception spec](https://github.com/safedep/vet/blob/main/api/exceptions_spec.proto)
+:::warning
+
+Package exceptions must be handled with care. Any package added to the
+exceptions list will not be scanned and reported, including any future issues
+that may arise in the package. To mitigate this risk, we will ensure that
+issues can be ignored till an acceptable time window and not permanently.
 
 :::
 
-## Use-case
+## Generating Exceptions List
 
-As a user of `vet` tool, I want to add all existing packages or package versions as `exceptions` to make the scanner and filter analyses to ignore them while reporting issues so that I can deploy `vet` as a security guardrail to prevent introducing new packages with security issues
+### Manual
 
-This workflow will allow users to
+- Create a new file `exceptions.yml` with the following content
 
-1. Accept the current issues as backlog to be mitigated over time
-2. Deploy `vet` as a security gate in CI to prevent introducing new issues
+```yaml
+description: Exceptions File for vet
+exceptions:
+- ecosystem: npm
+  expires: "2025-05-10T00:00:00Z"
+  id: 01JKMC07KAGJYEDZX1XPAC3SKP
+  name: '@babel/plugin-transform-function-name'
+  version: 7.18.9
+- ecosystem: npm
+  expires: "2025-05-10T00:00:00Z"
+  id: 01JKMC07KASSGYH1PHQY09QNZ3
+  name: '@babel/plugin-proposal-object-rest-spread'
+  version: 7.12.1
+```
 
-### Security Risks
+> **Note:** The `expires` field is mandatory and should be in RFC3339 format.
+> The `id` field must be unique and can be in any unique string format.
 
-Exceptions management should handle the potential security risk of ignoring a package and its future issues. To mitigate this risk, we will ensure that issues can be ignored till an acceptable time window and not permanently.
+### Using `vet` to Generate Exceptions
 
-## Workflow
-
-### Generate Exceptions File
-
-- Run a scan and dump raw data to a directory
+- Run a scan against your code base and dump raw data to a temporary directory
 
 ```bash
 vet scan -D /path/to/repo --json-dump-dir /path/to/dump
 ```
 
-- Use `vet query` to generate exceptions for all existing packages
+- Use `vet query` to generate exceptions for all packages without a critical or high severity issue
 
 ```bash
 vet query --from /path/to/dump \
     --exceptions-generate /path/to/exceptions.yml \
+    --exceptions-filter '!vulns.critical.exists(p, true) && !vulns.high.exists(p, true)' \
+    --exceptions-till '2025-05-01'
+```
+
+- Alternatively, use `vet query` to generate exceptions for all existing packages
+
+:::warning
+
+Adding all packages to exceptions is not recommended. It is better to add exceptions for specific packages based on use-case specific requirements.
+
+:::
+
+```bash
+vet query --from /path/to/dump \
+    --exceptions-generat e /path/to/exceptions.yml \
     --exceptions-filter 'true' \    # Optional filter for packages to add
     --exceptions-till '2023-12-12'
 ```
@@ -55,11 +85,26 @@ vet query --from /path/to/dump \
 
 :::
 
-### Customize Exceptions File
+## Using Exceptions
 
-The generated exceptions file will add all packages, matching optional filter, into the `exceptions.yml` file. This file should be reviewed and customised as required before using it.
+### Exceptions with `vet-action`
 
-### Use Exceptions to Ignore Specific Packages
+[vet-action](https://github.com/safedep/vet-action) supports custom exceptions
+configuration. To add exceptions to the workflow
+
+1. Create `.github/vet/exceptions.yml` in your repository with your exceptions configuration
+2. Update your `vet-ci.yml` workflow to include the exceptions file
+
+```yaml
+- name: Vet Scan
+  uses: safedep/vet-action@v1
+  with:
+    exception-file: .github/vet/exceptions.yml
+```
+
+For more information, refer to [vet-action documentation](https://github.com/safedep/vet-action?tab=readme-ov-file#configuration)
+
+### Exceptions with `vet`
 
 An exceptions file can be passed as a global flag to `vet`. It will be used for various commands such as `scan` or `query`.
 
