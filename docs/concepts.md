@@ -34,4 +34,4 @@ Vetting open source packages are largely a manual and opinionated process involv
 
 ## About SafeDep Cloud
 
-SafeDeo Cloud is a managed SaaS built using [SafeDep Control Tower](#). It is meant for large scale `vet` deployments across 1000+ repositories, central policy management, integrated SBOM visualization, querying and other governance use-cases. See [cloud quickstart](./cloud/quickstart.md) for more details.
+SafeDep Cloud is a managed SaaS built using [SafeDep Control Tower](#). It is meant for large scale `vet` deployments across 1000+ repositories, central policy management, integrated SBOM visualization, querying and other governance use-cases. See [cloud quickstart](./cloud/quickstart.md) for more details.
