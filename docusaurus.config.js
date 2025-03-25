@@ -127,6 +127,12 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      metadata: [
+        {
+          name: 'algolia-site-verification',
+          content: 'AEEFBC640513A7E9',
+        },
+      ],
     }),
 };
 
