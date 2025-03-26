@@ -85,7 +85,7 @@ vet scan --github https://github.com/safedep/demo-client-python \
 ```
 
 - `vet` will create a new engagement in DefectDojo
-- `vet` will report the policy violations as new findings in DefectDojo
+- `vet` will report the policy violations as new findings in DefectDojo. Learn more about [queries](../advanced/build-your-own-querie.md) and [policy as code](../advanced/policy-as-code.md)
 
 
 **Note:** `vet` currently reports only policy violations to DefectDojo. Feature enhancement to
