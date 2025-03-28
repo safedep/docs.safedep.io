@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 title: 🏄 Code Analysis
 ---
 
@@ -11,7 +11,7 @@ EXPERIMENTAL: This feature is experimental and may introduce breaking changes.
 
 :::
 
-`vet` uses [code](https://github.com/safedep/code/) analysis framework built on top of [tree-sitter](#) parsers.
+`vet` uses [code](https://github.com/safedep/code/) analysis framework built on top of [tree-sitter](https://tree-sitter.github.io/tree-sitter/) parsers.
 The goal of this framework is to support multiple languages, source repositories (local and remote), and report the findings.
 
 `vet` uses these findings and creates a Code analysis database, which can be used for enriching / analysing manifests during scanning.
