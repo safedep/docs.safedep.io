@@ -18,6 +18,8 @@ Any kind of security scanning is only available to GitLab Ultimate plans.
 
 :::
 
+Free users can still use **`vet` ci component** to check for **Policy Violations** in their project. See [Policy input configuration](#policy-configuration) for more details.
+
 ## Configure GitLab Dependency Scanning
 
 To enable `vet` dependency scanning in your GitLab project, you need to:
@@ -36,7 +38,7 @@ To do this, add the following to your `.gitlab-ci.yml` file:
 
 ```yaml
 include:
-  - component: gitlab.com/safedep/ci-components/vet/scan@v1.4.0
+  - component: gitlab.com/safedep/ci-components/vet/scan@v1.5.0
 ```
 
 Now commit and push changes to your project to trigger the first scan.
@@ -82,6 +84,21 @@ Make sure to put the `CLOUD_KEY` and `CLOUD_TENANT` in the GitLab CI/CD variable
 
 This will sync the scan results to [SafeDep Cloud](https://docs.safedep.io/cloud).
 
+### Policy Configuration
+
+To scan with filters and policy file, you can use the following input:
+
+```yaml
+include:
+  - component: gitlab.com/safedep/ci-components/vet/scan@v1.5.0
+    inputs:
+      policy: '.gitlab/vet/policy.yml'
+```
+
+See [Policy as Code](https://docs.safedep.io/advanced/policy-as-code) for more details.
+
+The CI Job will fail if any policy violations are found. You have to see the logs for finding which policy is violated.
+
 ## Other Inputs
 
 ### Version
@@ -90,7 +107,7 @@ Specify which version of `vet` to use.
 
 ```yaml
 include:
-  - component: gitlab.com/safedep/ci-components/vet/scan@v1.4.0
+  - component: gitlab.com/safedep/ci-components/vet/scan@v1.5.0
     inputs:
       version: v1.9.0
 ```
@@ -101,7 +118,7 @@ Trusted registry URLs to use for package manifest verification.
 
 ```yaml
 include:
-  - component: gitlab.com/safedep/ci-components/vet/scan@v1.4.0
+  - component: gitlab.com/safedep/ci-components/vet/scan@v1.5.0
     inputs:
       trusted-registries:
         - https://url.com
@@ -114,7 +131,7 @@ Artifact access to determine who can access the job artifacts from the GitLab UI
 
 ```yaml
 include:
-  - component: gitlab.com/safedep/ci-components/vet/scan@v1.4.0
+  - component: gitlab.com/safedep/ci-components/vet/scan@v1.5.0
     inputs:
       artifact-access: 'developer'
 ```
