@@ -36,6 +36,8 @@ touch .gitlab-ci.yml
 
 To do this, add the following to your `.gitlab-ci.yml` file:
 
+Here we use `v1.5.0` version of the ci component. Check the [Release](https://gitlab.com/safedep/ci-components/vet/-/releases) for latest version.
+
 ```yaml
 include:
   - component: gitlab.com/safedep/ci-components/vet/scan@v1.5.0
