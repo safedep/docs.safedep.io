@@ -92,7 +92,7 @@ To scan with filters and policy file, you can use the following input:
 include:
   - component: gitlab.com/safedep/ci-components/vet/scan@v1.5.0
     inputs:
-      policy: '.gitlab/vet/policy.yml'
+      policy: '.gitlab/vet/policy.yml' # path to your policy file
 ```
 
 See [Policy as Code](https://docs.safedep.io/advanced/policy-as-code) for more details.
