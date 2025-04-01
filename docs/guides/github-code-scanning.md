@@ -27,21 +27,27 @@ produces a SARIF report which can be uploaded to GitHub.
 Invoke `vet-action` to run `vet` in GitHub
 
 ```yaml
-- name: Run vet
-  id: vet
-  permissions:
-    contents: read
-    issues: write
-    pull-requests: write
-  uses: safedep/vet-action@v1
-  env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+  
+jobs:
+  vet-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run vet
+        id: vet
+        uses: safedep/vet-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 Upload the SARIF report to GitHub
 
 ```yaml
 - name: Upload SARIF
+  if: steps.vet.outputs.report != ''
   uses: github/codeql-action/upload-sarif@v3
   with:
     sarif_file: ${{ steps.vet.outputs.report }}
