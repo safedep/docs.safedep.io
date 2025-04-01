@@ -48,6 +48,13 @@ jobs:
 
 Upload the SARIF report to GitHub
 
+:::info
+
+SARIF reports work when you enable GitHub Code Scanning in your repository.
+[Learn more](https://docs.github.com/en/code-security/code-scanning/enabling-code-scanning)
+
+:::
+
 ```yaml
 - name: Upload SARIF
   if: steps.vet.outputs.report != ''
