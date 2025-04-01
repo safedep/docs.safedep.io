@@ -127,6 +127,13 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      algolia: {
+        appId: 'VRZ8RB9JZ8',
+        apiKey: 'b3d464e6f36ab5f925566dd7f3b22947',
+        indexName: 'docs_safedep_io_vrz8rb9jz8_pages',
+        contextualSearch: true,
+        searchPagePath: 'search',
+      },
       metadata: [
         {
           name: 'algolia-site-verification',
