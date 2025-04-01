@@ -36,6 +36,9 @@ jobs:
   vet-scan:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Run vet
         id: vet
         uses: safedep/vet-action@v1
