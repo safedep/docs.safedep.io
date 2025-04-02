@@ -7,7 +7,7 @@ title: 📜 Policy as Code
 
 ## What is Policy as Code?
 
-The idea of treating policy as code / config / rules that can be evaluated by tools to make runtime decisions. Generally, policy as code approach reduces ***cost of compliance*** by automating grunt work required to audit for policy violations.
+The idea of treating policy as code / config / rules that can be evaluated by tools to make runtime decisions. Generally, policy as code approach reduces **_cost of compliance_** by automating grunt work required to audit for policy violations.
 
 ## Why use Policy as Code?
 
@@ -21,6 +21,28 @@ Examples of software supply chain policy may include:
 - Publishers must follow security standards e.g. [SLSA](https://slsa.dev/)
 
 ## Filter Suite
+
+```mermaid
+flowchart LR
+    subgraph "Policy"
+        A["👥 Security Team"] -->|Define| B[["Policy Rules"]]
+        B -->|Convert to| C[["Filter Suite"]]
+    end
+
+    subgraph "Evaluation"
+        D["👤 Developer"] -->|Add| E[["OSS Component"]]
+        E -->|Scan| F[["vet"]]
+        F -->|Check| C
+        C -->|Match| G[("❌ Blocked")]
+        C -->|No Match| H[("✅ Allowed")]
+    end
+
+    %% Theme-aware styling
+    style G fill:transparent,stroke:#fa5252,stroke-width:2px
+    style H fill:transparent,stroke:#40c057,stroke-width:2px
+
+
+```
 
 A single filter is useful for identification of packages that meet some specific criteria. While it helps solve various use-cases, it is not entirely suitable for `security guardrails` where multiple filters may be required to express an organization's acceptable OSS usage policy.
 

@@ -7,6 +7,29 @@ title: 🔎 Filtering
 
 Filter command helps solve the problem of visibility for OSS dependencies in an application. To support various requirements, we adopt a generic [expressions language](https://cel.dev/) for flexible filtering.
 
+```mermaid
+graph TD
+    subgraph "Input Sources"
+        A[Package Info] -->|ecosystem, name, version| D[Filter Expression]
+        B[Vulnerabilities] -->|critical, high, medium, low| D
+        C[OpenSSF Scorecard] -->|scores| D
+        E[Project Info] -->|stars, forks, issues| D
+        F[Licenses] -->|SPDX codes| D
+    end
+
+    subgraph "Filter Evaluation"
+        D -->|CEL Expression| G[Boolean Result]
+        G -->|true| H[Include in Results]
+        G -->|false| I[Exclude from Results]
+    end
+
+    %% Theme-aware styling
+    style H fill:transparent,stroke:#40c057,stroke-width:2px
+    style I fill:transparent,stroke:#fa5252,stroke-width:2px
+
+
+```
+
 ## Example
 
 - The scan will list only packages that use the `MIT` license.
@@ -38,12 +61,12 @@ Filter expressions work on packages (aka. dependencies) and evaluates to a boole
 - Filter expressions get the following input data to work with
 
 | Variable    | Content                                                     |
-|-------------|-------------------------------------------------------------|
+| ----------- | ----------------------------------------------------------- |
 | `_`         | The root variable, holding other variables                  |
 | `vulns`     | Holds a map of vulnerabilities by severity                  |
 | `scorecard` | Holds OpenSSF scorecard                                     |
 | `projects`  | Holds a list of source projects associated with the package |
-| `licenses`  | Holds a list of licenses in SPDX license code format         |
+| `licenses`  | Holds a list of licenses in SPDX license code format        |
 
 :::tip
 
@@ -61,11 +84,11 @@ statements that evaluate to `true` or `false`.
 ### Example Queries
 
 | Description                                  | Query                                |
-|----------------------------------------------|--------------------------------------|
+| -------------------------------------------- | ------------------------------------ |
 | Find packages with a critical vulnerability  | `vulns.critical.exists(x, true)`     |
 | Find unmaintained packages as per OpenSSF SC | `scorecard.scores.Maintained == 0`   |
 | Find packages with low stars                 | `projects.exists(x, x.stars < 10)`   |
-| Find packages with GPL-2.0 license           | `licenses.exists(x, x == "GPL-2.0")`
+| Find packages with GPL-2.0 license           | `licenses.exists(x, x == "GPL-2.0")` |
 
 :::tip
 
@@ -118,8 +141,6 @@ Refer to [scorecard checks](https://github.com/ossf/scorecard#checks-1) for a li
       "issues": 464
     }
   ],
-  "licenses": [
-    "MIT"
-  ]
+  "licenses": ["MIT"]
 }
 ```
