@@ -5,7 +5,7 @@ title:  🛡️ GitLab Dependency Scanning
 
 `vet` supports native GitLab Dependency Scanning. You can use `vet` to protect your project from malicious and vulnerable dependencies on every push and merge request to GitLab.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3FwcVVR9-1c?si=EyqimClJRLCFftnB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3FwcVVR9-1c?si=EyqimClJRLCFftnB" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
 ## Prerequisites
 
