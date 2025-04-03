@@ -33,8 +33,8 @@ flowchart LR
         D["👤 Developer"] -->|Add| E[["OSS Component"]]
         E -->|Scan| F[["vet"]]
         F -->|Check| C
-        C -->|Match| G[("❌ Blocked")]
-        C -->|No Match| H[("✅ Allowed")]
+        C -->|Match| G("❌ Blocked")
+        C -->|No Match| H("✅ Allowed")
     end
 
     %% Theme-aware styling

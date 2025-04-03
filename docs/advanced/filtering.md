@@ -18,17 +18,25 @@ graph TD
     end
 
     subgraph "Filter Evaluation"
-        D -->|CEL Expression| G[Boolean Result]
+        D -->|CEL Expression| G{Boolean Result}
         G -->|true| H[Include in Results]
         G -->|false| I[Exclude from Results]
     end
 
     %% Theme-aware styling
+    style A fill:transparent,stroke:#228be6,stroke-width:2px
+    style B fill:transparent,stroke:#228be6,stroke-width:2px
+    style C fill:transparent,stroke:#228be6,stroke-width:2px
+    style D fill:transparent,stroke:#228be6,stroke-width:2px
+    style E fill:transparent,stroke:#228be6,stroke-width:2px
+    style F fill:transparent,stroke:#228be6,stroke-width:2px
+    style G fill:transparent,stroke:#228be6,stroke-width:2px
     style H fill:transparent,stroke:#40c057,stroke-width:2px
     style I fill:transparent,stroke:#fa5252,stroke-width:2px
 
-
-```
+    %% Subgraph styling
+    classDef subgraphStyle fill:transparent,stroke:#adb5bd,stroke-width:1px
+    class "Input Sources","Filter Evaluation" subgraphStyle
 
 ## Example
 
