@@ -18,7 +18,7 @@ Any kind of security scanning is only available to GitLab Ultimate plans.
 
 :::
 
-Free users can still use **`vet` ci component** to check for **Policy Violations** in their project. See [Policy input configuration](#policy-configuration) for more details.
+Free users can still use **`vet` ci component** to find vulnerabilities and check **Policy Violations** in their project. See the [demo video on youtube](https://www.youtube.com/watch?v=QJfSRc4p-z4)
 
 ## Configure GitLab Dependency Scanning
 
