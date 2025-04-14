@@ -6,7 +6,7 @@ title: 👋 Welcome
 
 # 👋 Welcome
 
-This is the official documentation for [safedep.io](https://safedep.io). Here you will find everything you need to know on using [SafeDep Cloud](./cloud/index.md) and [vet](./concepts.md) to safeguard your application against risky open source components.
+This is the official documentation for [safedep.io](https://safedep.io). Here you will find everything you need to know on using [SafeDep Cloud](./cloud/index.md) and [vet](./concepts/about.md) to safeguard your application against risky open source components.
 
 ## Whats next?
 
