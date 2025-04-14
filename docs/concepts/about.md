@@ -58,7 +58,9 @@ Vet automates the analysis of open source dependencies by combining insights fro
 
 ### 🤩 vet in Action
 
-![Vet Showcase](/img/vet/vet-demo.gif)
+<div class="demo-screen">
+    <img src="/img/vet/vet-demo.gif" alt="Vet Demo" />
+</div>
 
 ## About SafeDep Cloud
 
