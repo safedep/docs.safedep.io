@@ -5,9 +5,7 @@ title: 🚀 Quick Start
 
 # Quick Start
 
-:::info
 SafeDep Cloud provides a control and data aggregation service on top of security tools like [vet](https://github.com/safedep/vet). Refer to [SafeDep Cloud](./index.md) for more information.
-:::info
 
 SafeDep cloud allows [vet](https://github.com/safedep/vet) users to connect and optionally report its findings to a central location (SafeDep Cloud). Subsequently, users of the service can perform various tasks such as
 
@@ -39,7 +37,7 @@ Navigate to https://platform.safedep.io/ to onboard to SafeDep Cloud. You must p
 
 1. Navigate to https://platform.safedep.io/
 2. Sign-in or Sign-up
-3. Onboard and create your Tenant while noting the *Tenant Domain*
+3. Onboard and create your Tenant while noting the _Tenant Domain_
 4. Create API key for use with `vet`
 
 After completing onboarding, you should have the following information for use with `vet`
