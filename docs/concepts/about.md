@@ -51,6 +51,7 @@ flowchart TD
     class D,F analysis
     class E analysis,thick
     class G,H,I,J sources
+    class K results
 ```
 
 Vet automates the analysis of open source dependencies by combining insights from trusted sources and allowing developers to enforce custom security policies using CEL.
@@ -61,4 +62,4 @@ Vet automates the analysis of open source dependencies by combining insights fro
 
 ## About SafeDep Cloud
 
-SafeDep Cloud is a managed SaaS built using [SafeDep Control Tower](https://docs.safedep.io/cloud). It is meant for large scale `vet` deployments across 1000+ repositories, central policy management, integrated SBOM visualization, querying and other governance use-cases. See [cloud quickstart](./cloud/quickstart.md) for more details.
+SafeDep Cloud is a managed SaaS built using [SafeDep Control Tower](https://docs.safedep.io/cloud). It is meant for large scale `vet` deployments across 1000+ repositories, central policy management, integrated SBOM visualization, querying and other governance use-cases. See [cloud quickstart guide](/cloud/quickstart) for more details.
