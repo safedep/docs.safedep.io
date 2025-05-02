@@ -17,6 +17,11 @@ vet scan --report-cdx path/to/report.cdx.json \
          --report-cdx-app-name myproject # Optional
 ```
 
+## Sample SBOMs
+
+- [chat-server.cdx.json](/downloads/chat-server.cdx.json)
+- [express.cdx.json](/downloads/express.cdx.json)
+
 ## Reference
 
 - https://github.com/safedep/vet
