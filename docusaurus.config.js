@@ -136,6 +136,9 @@ const config = {
       mermaid: {
         theme: {light: 'neutral', dark: 'dark'},
       },
+      colorMode: {
+        respectPrefersColorScheme: true,
+      },
       // algolia: {
       //   appId: 'VRZ8RB9JZ8',
       //   apiKey: 'b3d464e6f36ab5f925566dd7f3b22947',
