@@ -5,6 +5,8 @@ title:  🚚 Container Scanning
 
 # Container Scanning
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/l-cBfp3FDYs?si=-wvHw7Sx9s28yrdb" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+
 `vet` can scan container images for vulnerabilities and malware. 
 
 These are multiple ways to scan container images with `vet`:
