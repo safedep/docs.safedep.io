@@ -1,7 +1,7 @@
 ---
 draft: false
 title: 🌀 CycloneDX SBOM generation
-sidebar_position: 6
+sidebar_position: 7
 ---
 
 # CycloneDX SBOM generation using vet
