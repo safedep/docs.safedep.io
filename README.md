@@ -1,3 +1,6 @@
+**This repository is deprecated. Updated documentation is managed at [github.com/safedep/docs](https://github.com/safedep/docs).**
+
+
 # SafeDep Documentation
 
 The source for `https://docs.safedep.io`
